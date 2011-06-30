@@ -1363,7 +1363,9 @@ static void __init hero_init(void)
 	int rc;
 	printk("hero_init() revision = 0x%X\n", system_rev);
 
+#ifdef CONFIG_HERO_EXPERIMENTAL_USBADSP
 	android_usb_pdata.serial_number = board_serialno();
+#endif
 
 	/*
 	 * Setup common MSM GPIOS
@@ -1394,11 +1396,11 @@ static void __init hero_init(void)
 #ifdef CONFIG_HERO_EXPERIMENTAL_USBADSP
 	msm_device_hsusb.dev.platform_data = &msm_hsusb_pdata;
 #else
-	msm_add_usb_devices(hero_phy_reset);
+	msm_add_usb_devices(hero_phy_reset, NULL);
 	msm_add_mem_devices(&pmem_setting_32);
 #endif
 
-	msm_init_pmic_vibrator();
+	msm_init_pmic_vibrator(3000);
 
 	rc = hero_init_mmc(system_rev);
 	if (rc)
@@ -1456,7 +1458,7 @@ static void __init hero_fixup(struct machine_desc *desc, struct tag *tags,
 static void __init hero_map_io(void)
 {
 	msm_map_common_io();
-	msm_clock_init(msm_clocks_7x01a, msm_num_clocks_7x01a);
+	msm_clock_init();
 }
 
 MACHINE_START(HERO, "hero")
