@@ -290,6 +290,12 @@ config MACH_HERO
 	help
 	  Support for the HTC Hero device.
 
+config HERO_EXPERIMENTAL_USBADSP
+	depends on MACH_HERO
+	bool "Experimental usb-adsp"
+	help
+		Use experimental usb-adsp setup
+
 config MACH_DESIREC
         depends on ARCH_MSM7X00A
         default n
