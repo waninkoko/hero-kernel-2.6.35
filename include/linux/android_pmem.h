@@ -156,8 +156,8 @@ int32_t pmem_kfree(const int32_t physaddr);
 int is_pmem_file(struct file *file);
 #endif
 unsigned long get_pmem_id_addr(int id);
-int get_pmem_file(unsigned int fd, unsigned long *start, unsigned long *vstart,
-		  unsigned long *end, struct file **filp);
+int get_pmem_file(int fd, unsigned long *start, unsigned long *vstart,
+		  unsigned long *len, struct file **filp);
 int get_pmem_user_addr(struct file *file, unsigned long *start,
 		       unsigned long *end);
 void put_pmem_file(struct file* file);
