@@ -115,6 +115,10 @@ config MSM_MDP40
 	depends on ARCH_MSM7X30 || ARCH_MSM8X60
 	default y
 
+config MSM_LEGACY_7X00A_AMSS
+	bool "Legacy 7x00A AMSS"
+	default n
+
 config TURBO_MODE
 	bool "Turbo mode"
 	depends on ARCH_MSM7225 || ARCH_MSM7X00A
