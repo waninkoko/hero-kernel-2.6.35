@@ -22,7 +22,9 @@
 #include <linux/uaccess.h>
 #include <linux/miscdevice.h>
 #include <linux/kernel.h>
+#include <linux/slab.h>
 #include <media/msm_camera.h>
+#include <media/msm_camera_sensor.h>
 #include <mach/gpio.h>
 #include <mach/camera.h>
 #include "mt9p012.h"
@@ -987,7 +989,7 @@ init_probe_done:
 	return rc;
 }
 
-static int mt9p012_sensor_open_init(const struct msm_camera_sensor_info *data)
+static int mt9p012_sensor_open_init(struct msm_camera_sensor_info *data)
 {
 	int rc;
 
@@ -1281,7 +1283,7 @@ static struct i2c_driver mt9p012_i2c_driver = {
 		   },
 };
 
-static int mt9p012_sensor_probe(const struct msm_camera_sensor_info *info,
+static int mt9p012_sensor_probe(struct msm_camera_sensor_info *info,
 				struct msm_sensor_ctrl *s)
 {
 	int rc = i2c_add_driver(&mt9p012_i2c_driver);
